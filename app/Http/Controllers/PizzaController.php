@@ -17,7 +17,7 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        $pizzas = Pizza::get();
+        $pizzas = Pizza::paginate(5);
         return view('pizza.index', compact('pizzas'));
     }
 
@@ -112,6 +112,7 @@ class PizzaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pizza::find($id)->delete();
+        return redirect()->route('pizza.index')->with('message', 'Pizza Delete Successfully!');
     }
 }
