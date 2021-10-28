@@ -29,6 +29,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if(count($pizzas) > 0)
                             @foreach($pizzas as $key=>$pizza)
                             <tr>
                                 <th scope="row">{{$key+1}}</th>
@@ -40,10 +41,14 @@
                                 <td>{{$pizza->small_pizza_price}}</td>
                                 <td>{{$pizza->medium_pizza_price}}</td>
                                 <td>{{$pizza->large_pizza_price}}</td>
-                                <td><button class="btn btn-primary">Edit</button></td>
+                                <td><a href={{route('pizza.edit',$pizza->id)}}><button
+                                            class="btn btn-primary">Edit</button></a></td>
                                 <td><button class="btn btn-danger">Delete</button></td>
                             </tr>
                             @endforeach
+                            @else
+                            <p>No Pizza Show</p>
+                            @endif
                         </tbody>
                     </table>
                 </div>
